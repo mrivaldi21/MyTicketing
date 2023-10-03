@@ -6,25 +6,25 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Rect
-import android.icu.text.CaseMap.Title
 import android.util.AttributeSet
 import android.view.KeyEvent.ACTION_DOWN
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import kotlin.text.Typography.half
+
+private val seats: ArrayList<Seat> = arrayListOf(
+    Seat(id = 1, name = "A1", isBooked = false),
+    Seat(id = 2, name = "A2", isBooked = false),
+    Seat(id = 3, name = "B1", isBooked = false),
+    Seat(id = 4, name = "A4", isBooked = false),
+    Seat(id = 5, name = "C1", isBooked = false),
+    Seat(id = 6, name = "C2", isBooked = false),
+    Seat(id = 7, name = "D1", isBooked = false),
+    Seat(id = 8, name = "D2", isBooked = false),
+)
 
 class SeatsView : View {
-    private val seats: ArrayList<Seat> = arrayListOf(
-        Seat(id = 1, name = "A1", isBooked = false),
-        Seat(id = 2, name = "A2", isBooked = false),
-        Seat(id = 3, name = "B1", isBooked = false),
-        Seat(id = 4, name = "A4", isBooked = false),
-        Seat(id = 5, name = "C1", isBooked = false),
-        Seat(id = 6, name = "C2", isBooked = false),
-        Seat(id = 7, name = "D1", isBooked = false),
-        Seat(id = 8, name = "D2", isBooked = false),
-    )
+
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -52,7 +52,7 @@ class SeatsView : View {
                 }
             } else {
                 seats[i].apply {
-                    x = halfOfWidth - 100F
+                    x = halfOfWidth + 100F
                     y = halfOfHeight + value
                 }
                 value += 300F
@@ -83,7 +83,7 @@ class SeatsView : View {
     }
 
     private fun drawSeat(canvas: Canvas?, seat: Seat) {
-        //set collor when seat is booked
+        //set color when seat is booked
         if (seat.isBooked) {
             backgroundPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
             armrestPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
@@ -115,7 +115,7 @@ class SeatsView : View {
         armRestPath.addRect(0F, 0F, 50F, 200F, Path.Direction.CCW)
         canvas?.drawPath(armRestPath, armrestPaint)
 
-        //seat Bootm
+        //seat Bottom
         canvas?.translate(-150F, 175F)
         val bottomSeatPath = Path()
         bottomSeatPath.addRect(0F, 0F, 200F, 25F, Path.Direction.CCW)
