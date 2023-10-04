@@ -160,11 +160,11 @@ class SeatsView : View {
         return true
     }
 
-    private fun booking(i: Int) {
+    private fun booking(possition: Int) {
         for (seat in seats) {
             seat.isBooked = false
         }
-        seats[i].apply {
+        seats[possition].apply {
             seat = this
             isBooked = true
         }

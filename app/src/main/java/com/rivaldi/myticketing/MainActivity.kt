@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         val seatView = findViewById<SeatsView>(R.id.seatView)
         val button = findViewById<Button>(R.id.finishButton)
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
+//        requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        supportActionBar?.hide()
 
         button.setOnClickListener {
             seatView.seat?.let {
